@@ -77,5 +77,6 @@ báo cáo vào `docs/reports/m1-osm-report.md`.
 ## Trạng thái
 
 - M0 và M0_v1: đã xác nhận
-- M1: chờ xác nhận; đã nhập OSM cho hai vùng Tân Châu và Phú Tân thuộc An Giang
+- M1: đã xác nhận; đã nhập OSM cho hai vùng Tân Châu và Phú Tân thuộc An Giang
+- M2: đang làm; nguồn vệ tinh chưa cấu hình, layer sẽ ẩn khi thiếu cấu hình
 - M2–M7: chưa bắt đầu; xem `docs/milestones/`
