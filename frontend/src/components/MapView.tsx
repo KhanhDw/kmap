@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import L from "leaflet";
 import type { Feature, Geometry, Point } from "geojson";
+import { useNavigate } from "react-router-dom";
 import "leaflet/dist/leaflet.css";
 import "leaflet.markercluster/dist/MarkerCluster.css";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";
@@ -64,7 +65,7 @@ function initialMapState(config: PublicMapConfig) {
   };
 }
 
-function updateUrl(map: L.Map, photoId?: string): void {
+function mapSearch(map: L.Map, photoId?: string): string {
   const center = map.getCenter();
   const params = new URLSearchParams(window.location.search);
   params.set("lat", center.lat.toFixed(6));
@@ -73,11 +74,14 @@ function updateUrl(map: L.Map, photoId?: string): void {
   if (photoId) {
     params.set("photo", photoId);
   }
-  const query = params.toString();
+  return `?${params.toString()}`;
+}
+
+function updateUrl(map: L.Map): void {
   window.history.replaceState(
     window.history.state,
     "",
-    `${window.location.pathname}${query ? `?${query}` : ""}`,
+    `${window.location.pathname}${mapSearch(map)}`,
   );
 }
 
@@ -100,6 +104,7 @@ function popupContent(feature: Feature<Point, PhotoProperties>): HTMLElement {
 export default function MapView({ config }: { config: PublicMapConfig }) {
   const mapElement = useRef<HTMLDivElement>(null);
   const mapInstance = useRef<L.Map | null>(null);
+  const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const [showZoomHint, setShowZoomHint] = useState(false);
 
@@ -264,13 +269,21 @@ export default function MapView({ config }: { config: PublicMapConfig }) {
           for (const feature of photos.features) {
             const [longitude, latitude] = feature.geometry.coordinates;
             const marker = L.circleMarker([latitude, longitude], {
-              radius: 7,
+              radius:
+                initialState.selectedPhoto === feature.properties.id ? 9 : 7,
               color: "#fff",
               weight: 2,
-              fillColor: "#e11d48",
+              fillColor:
+                initialState.selectedPhoto === feature.properties.id
+                  ? "#f59e0b"
+                  : "#e11d48",
               fillOpacity: 1,
             }).bindPopup(popupContent(feature));
-            marker.on("click", () => updateUrl(map, feature.properties.id));
+            marker.on("click", () =>
+              navigate(
+                `/photo/${encodeURIComponent(feature.properties.id)}${mapSearch(map, feature.properties.id)}`,
+              ),
+            );
             photoMarkers.addLayer(marker);
             if (
               !initialPhotoHandled &&
@@ -305,7 +318,7 @@ export default function MapView({ config }: { config: PublicMapConfig }) {
       map.remove();
       mapInstance.current = null;
     };
-  }, [config]);
+  }, [config, navigate]);
 
   const locate = () => {
     if (!navigator.geolocation) {

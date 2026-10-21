@@ -7,7 +7,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import JSONResponse
 from sqlalchemy import create_engine
+from starlette.middleware.base import RequestResponseEndpoint
+from starlette.responses import Response
 from starlette.exceptions import HTTPException as StarletteHTTPException
+from starlette.staticfiles import StaticFiles
 
 from app.core.config import settings
 from app.core.errors import AppError
@@ -46,6 +49,18 @@ app.add_middleware(
 app.add_middleware(GZipMiddleware, minimum_size=1000, compresslevel=5)
 
 
+@app.middleware("http")
+async def media_cache_headers(
+    request: Request,
+    call_next: RequestResponseEndpoint,
+) -> Response:
+    response = await call_next(request)
+    media_prefix = f"{settings.MEDIA_URL_PREFIX.rstrip('/')}/"
+    if request.url.path.startswith(media_prefix) and response.status_code == 200:
+        response.headers["Cache-Control"] = "public, max-age=31536000, immutable"
+    return response
+
+
 @app.exception_handler(AppError)
 async def app_error_handler(request: Request, exc: AppError) -> JSONResponse:
     return JSONResponse(
@@ -78,3 +93,8 @@ async def validation_error_handler(request: Request, exc: RequestValidationError
 
 app.include_router(health.router, prefix="/api/v1")
 app.include_router(read_data.router, prefix="/api/v1")
+app.mount(
+    settings.MEDIA_URL_PREFIX,
+    StaticFiles(directory=settings.MEDIA_DIR),
+    name="media",
+)
