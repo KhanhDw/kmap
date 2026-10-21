@@ -148,7 +148,7 @@ body {
 }
 
 .viewer-close,
-.neighbor-directions button {
+.viewer-navigation-button {
   display: inline-flex;
   min-width: 44px;
   min-height: 44px;
@@ -162,6 +162,43 @@ body {
   font: inherit;
   font-weight: 700;
   cursor: pointer;
+}
+
+.viewer-navigation {
+  position: absolute;
+  z-index: 6;
+  top: 55%;
+  left: 50%;
+  display: flex;
+  gap: 12px;
+  transform: translate(-50%, -50%);
+}
+
+.viewer-navigation-button {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  align-content: center;
+  justify-items: center;
+  border: 2px solid rgb(255 255 255 / 85%);
+  border-radius: 50%;
+  background: rgb(15 23 42 / 82%);
+  color: white;
+}
+
+.viewer-navigation-button svg {
+  width: 26px;
+  height: 26px;
+}
+
+.viewer-navigation-button span {
+  font-size: 11px;
+  line-height: 1;
+}
+
+.viewer-navigation-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
 }
 
 .viewer-close {
@@ -202,17 +239,6 @@ body {
   padding: 10px;
   background: rgb(15 23 42 / 90%);
   box-shadow: 0 1px 8px rgb(0 0 0 / 35%);
-}
-
-.neighbor-directions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 8px;
-}
-
-.neighbor-directions button:disabled {
-  opacity: 0.48;
-  cursor: not-allowed;
 }
 
 .nearby-list {

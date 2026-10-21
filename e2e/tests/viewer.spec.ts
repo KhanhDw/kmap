@@ -79,6 +79,20 @@ test("opens a panorama from a mobile map and returns to the same view", async ({
   await page.screenshot({ path: testInfo.outputPath("m3-compass.png") });
   expect(externalRequests).toEqual([]);
 
+  const forward = page.getByRole("button", {
+    name: "Tiến tới ảnh phía trước",
+  });
+  const backward = page.getByRole("button", {
+    name: "Lùi tới ảnh phía sau",
+  });
+  await expect(forward).toBeVisible();
+  await expect(backward).toBeVisible();
+  const nextPhoto = (await forward.isEnabled()) ? forward : backward;
+  await expect(nextPhoto).toBeEnabled();
+  await nextPhoto.click();
+  await expect(page).not.toHaveURL(new RegExp(`/photo/${openedPhotoId}`));
+  await expect(compass).toBeVisible();
+
   const initialCompassTransform = await compass.getAttribute("style");
   const panoramaBounds = await page
     .locator(".pnlm-render-container")
@@ -106,13 +120,6 @@ test("opens a panorama from a mobile map and returns to the same view", async ({
 
   await page.locator(".pnlm-zoom-in").click();
   await page.locator(".pnlm-zoom-out").click();
-  const forward = page.getByRole("button", { name: "Tiến" });
-  const backward = page.getByRole("button", { name: "Lùi" });
-  const nextPhoto = (await forward.isEnabled()) ? forward : backward;
-  expect(await nextPhoto.isEnabled()).toBeTruthy();
-  await nextPhoto.click();
-  await expect(page).not.toHaveURL(new RegExp(`/photo/${openedPhotoId}`));
-  await expect(compass).toBeVisible();
   expect(externalRequests).toEqual([]);
 
   await page.getByRole("button", { name: "Đóng ảnh và quay lại bản đồ" }).click();

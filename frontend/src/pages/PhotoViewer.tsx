@@ -1,6 +1,6 @@
 import { useCallback, useMemo, useRef, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
-import { ArrowLeft, ArrowRight, X } from "lucide-react";
+import { ArrowDown, ArrowUp, X } from "lucide-react";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import {
   getPhotoNeighbors,
@@ -208,6 +208,42 @@ function PhotoViewerContent({ photoId }: { photoId: string }) {
           {capturedAt && <time dateTime={photo.captured_at ?? undefined}>{capturedAt}</time>}
         </div>
       </header>
+      {neighbors && (
+        <nav className="viewer-navigation" aria-label="Điều hướng ảnh 360°">
+          <button
+            className="viewer-navigation-button"
+            type="button"
+            aria-label="Lùi tới ảnh phía sau"
+            disabled={!neighbors.backward}
+            onClick={() =>
+              neighbors.backward &&
+              navigateToPhoto(
+                neighbors.backward.id,
+                currentCompassBearing(),
+              )
+            }
+          >
+            <ArrowDown aria-hidden="true" />
+            <span>Lùi</span>
+          </button>
+          <button
+            className="viewer-navigation-button"
+            type="button"
+            aria-label="Tiến tới ảnh phía trước"
+            disabled={!neighbors.forward}
+            onClick={() =>
+              neighbors.forward &&
+              navigateToPhoto(
+                neighbors.forward.id,
+                currentCompassBearing(),
+              )
+            }
+          >
+            <ArrowUp aria-hidden="true" />
+            <span>Tiến</span>
+          </button>
+        </nav>
+      )}
       <section className="viewer-neighbors" aria-label="Ảnh lân cận">
         {neighborsQuery.isError && (
           <p className="neighbors-error" role="alert">
@@ -216,36 +252,6 @@ function PhotoViewerContent({ photoId }: { photoId: string }) {
         )}
         {neighbors ? (
           <>
-            <div className="neighbor-directions">
-              <button
-                type="button"
-                disabled={!neighbors.backward}
-                onClick={() =>
-                  neighbors.backward &&
-                  navigateToPhoto(
-                    neighbors.backward.id,
-                    currentCompassBearing(),
-                  )
-                }
-              >
-                <ArrowLeft aria-hidden="true" />
-                Lùi
-              </button>
-              <button
-                type="button"
-                disabled={!neighbors.forward}
-                onClick={() =>
-                  neighbors.forward &&
-                  navigateToPhoto(
-                    neighbors.forward.id,
-                    currentCompassBearing(),
-                  )
-                }
-              >
-                Tiến
-                <ArrowRight aria-hidden="true" />
-              </button>
-            </div>
             {neighbors.nearby.length > 0 && (
               <div className="nearby-list">
                 <strong>Ảnh gần đây</strong>
