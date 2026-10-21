@@ -55,5 +55,6 @@ npm run build
 - Caddy 2
 
 ## Trạng thái
-- M0: khung dự án
-- M1–M7: xem docs/milestones/
+- M0 và M0_v1: đã xác nhận
+- M1: đang làm; chờ chủ dự án xác nhận ranh giới OSM trước khi import
+- M2–M7: chưa bắt đầu; xem docs/milestones/
