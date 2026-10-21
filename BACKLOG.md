@@ -18,5 +18,8 @@
 - Giám sát (uptime, lỗi) và cảnh báo.
 
 ## Ý tưởng mới (agent ghi vào đây)
+
+- Tự host nền phố OSM để bỏ phụ thuộc tile bên thứ ba lúc chạy: dùng PBF Việt Nam từ Geofabrik (đã có trong `fetch_osm.sh`) tạo vector tiles/PMTiles và phục vụ nội bộ. Cần chủ dự án duyệt cập nhật `PLAN.md`/stack trước khi làm; vẫn giữ ghi công OpenStreetMap.
+
 ## Từ M0_v1
 - (trống)
