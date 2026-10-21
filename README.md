@@ -72,7 +72,8 @@ Nền phố dùng tile URL và ghi công OSM từ `.env`. Nền vệ tinh mặc 
 không có nhà cung cấp mặc định. Trước khi bật hoặc công khai nền vệ tinh, chủ dự
 án phải tự chọn nguồn và xác nhận điều khoản sử dụng, rồi cấu hình
 `SAT_TILE_URL`, `SAT_ATTRIBUTION` và `SAT_MAX_ZOOM` trong `.env`. Ứng dụng không
-proxy hoặc cache tile của bên thứ ba.
+proxy hoặc cache tile của bên thứ ba. Bản đồ vẫn hiển thị ghi công
+`© OpenStreetMap contributors`; nhãn thương hiệu Leaflet được ẩn.
 
 ## Stack đã chọn
 
@@ -86,5 +87,5 @@ proxy hoặc cache tile của bên thứ ba.
 
 - M0 và M0_v1: đã xác nhận
 - M1: đã xác nhận; đã nhập OSM cho hai vùng Tân Châu và Phú Tân thuộc An Giang
-- M2: chờ xác nhận; tile OSM 256px rõ nét, map tự fit vùng phục vụ theo viewport hẹp (trung vị 2,95 giây trên Fast 4G mô phỏng); nền vệ tinh chưa cấu hình và bị ẩn
+- M2: đã xác nhận; tile OSM 256px rõ nét, map tự fit vùng phục vụ theo viewport hẹp (trung vị 2,95 giây trên Fast 4G mô phỏng); nền vệ tinh chưa cấu hình và bị ẩn
 - M3–M7: chưa bắt đầu; xem `docs/milestones/`

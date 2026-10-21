@@ -21,6 +21,7 @@
 - Trước khi fit theo viewport, tải bản đồ Fast 4G mô phỏng ở 360×800 có median 3,57 giây và 15 tile.
 - Sau tối ưu, median 2,95 giây trong 5 lượt (2,94–3,10 giây); 8/8 tile hoàn tất. Mô phỏng dùng độ trễ 150 ms, tải xuống 209.715 B/s, tải lên 96.000 B/s và tắt cache trình duyệt.
 - Median đạt mục tiêu dưới 3 giây; một lượt khởi tạo lạnh mất 3,10 giây. Giữ nguyên tile 256px, không đổi nhà cung cấp hoặc giảm chất lượng.
+- Chủ dự án xác nhận nghiệm thu M2. Ghi công `© OpenStreetMap contributors` được giữ; nhãn Leaflet bị ẩn.
 
 ## Quyết định tự đưa ra
 
@@ -34,5 +35,4 @@
 
 ## Cần chủ dự án làm
 
-- Xác nhận nghiệm thu M2 với trade-off hiệu năng đã nêu.
 - Trước khi công khai nền vệ tinh, chọn nhà cung cấp, xác nhận điều khoản và điền các biến `SAT_*` trong `.env`.

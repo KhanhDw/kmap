@@ -149,6 +149,7 @@ export default function MapView({ config }: { config: PublicMapConfig }) {
       );
     }
     mapInstance.current = map;
+    map.attributionControl.setPrefix(false);
     const streetUrl = import.meta.env.VITE_TILE_URL;
     const streetAttribution =
       import.meta.env.VITE_TILE_ATTRIBUTION || "© OpenStreetMap contributors";
