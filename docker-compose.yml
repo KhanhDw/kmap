@@ -29,6 +29,8 @@
       FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-http://localhost}
     volumes:
       - media:/data/media
+      - ./config:/config:ro
+      - ./scripts:/scripts:ro
     depends_on:
       db:
         condition: service_healthy

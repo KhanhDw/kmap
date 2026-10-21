@@ -16,6 +16,7 @@ class Settings(BaseSettings):
     BACKEND_ORIGIN: str = "http://localhost"
 
     DATABASE_URL: str
+    AREAS_FILE: Path = Path(__file__).resolve().parents[3] / "config" / "areas.geojson"
 
     JWT_SECRET: str
     JWT_ALGORITHM: str = "HS256"

@@ -8,7 +8,7 @@ Agent cập nhật file này khi bắt đầu và khi kết thúc mỗi mileston
 | :-- | :-- | :-- | :-- |
 | M0 Khung dự án | 1 | Đã xác nhận | Khung base đã dựng và kiểm tra sơ bộ |
 | M0_v1 Khung dự án | 1 | Đã xác nhận | Đã kiểm tra build/run Compose, API/web/admin, pytest, Ruff và frontend build |
-| M1 OSM và vùng phục vụ | 1 | Đang làm | Ranh giới OSM đề xuất đã lưu; chờ chủ dự án xác nhận trước khi import |
+| M1 OSM và vùng phục vụ | 1 | Chờ xác nhận | Dữ liệu OSM An Giang cho Tân Châu và Phú Tân đã nhập (310 đường); schema và kiểm tra M1 đạt |
 | M2 API đọc và bản đồ | 1 | Chưa bắt đầu | Cần quyết định nguồn vệ tinh |
 | M3 Viewer 360° | 2 | Chưa bắt đầu | |
 | M4 Tài khoản, phân quyền | 2 | Chưa bắt đầu | |
