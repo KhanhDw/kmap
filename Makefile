@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-.PHONY: up down logs migrate test lint e2e seed-admin
+.PHONY: up down logs migrate test lint e2e seed-demo seed-admin
 
 up:
 	docker compose up -d db
@@ -30,8 +30,12 @@ lint:
 
 e2e:
 	cd e2e && npm install --no-fund --no-audit
-	npx playwright install --with-deps chromium || true
-	npx playwright test --reporter=line
+	docker compose exec -T api python /scripts/seed_demo.py
+	cd e2e && npx playwright install chromium
+	cd e2e && npx playwright test --reporter=line
+
+seed-demo:
+	docker compose exec -T api python /scripts/seed_demo.py
 
 seed-admin:
 	@echo "M0: không seed admin; bước seed sẽ ở M4."

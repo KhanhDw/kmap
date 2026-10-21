@@ -10,7 +10,7 @@ Agent cập nhật file này khi bắt đầu và khi kết thúc mỗi mileston
 | M0_v1 Khung dự án | 1 | Đã xác nhận | Đã kiểm tra build/run Compose, API/web/admin, pytest, Ruff và frontend build |
 | M1 OSM và vùng phục vụ | 1 | Đã xác nhận | Dữ liệu OSM An Giang cho Tân Châu và Phú Tân đã nhập (310 đường); schema và kiểm tra M1 đạt |
 | M2 API đọc và bản đồ | 1 | Đã xác nhận | Chủ dự án xác nhận M2; giữ tile OSM 256px, fit zoom theo viewport hẹp (trung vị tải 2,95 giây); ghi công OSM giữ nguyên, nhãn Leaflet ẩn; vệ tinh chưa cấu hình và bị ẩn |
-| M3 Viewer 360° | 2 | Đang làm | Chủ dự án xác nhận M2 và yêu cầu bắt đầu M3 |
+| M3 Viewer 360° | 2 | Chờ xác nhận | Pannellum cục bộ; 4 ảnh giả; Vitest, PostGIS và Playwright mobile đạt; la bàn N/E/S/W ([ảnh](./reports/m3-compass.png)) |
 | M4 Tài khoản, phân quyền | 2 | Chưa bắt đầu | |
 | M5a Upload ảnh (backend) | 2 | Chưa bắt đầu | |
 | M5b Admin duyệt ảnh (UI) | 3 | Chưa bắt đầu | |

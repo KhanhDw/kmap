@@ -191,7 +191,7 @@ body {
 .viewer-neighbors {
   position: absolute;
   z-index: 4;
-  right: 12px;
+  left: 12px;
   bottom: max(12px, env(safe-area-inset-bottom));
   display: grid;
   gap: 8px;
@@ -330,7 +330,7 @@ body {
   }
 
   .viewer-neighbors {
-    right: 8px;
+    left: 8px;
     bottom: max(8px, env(safe-area-inset-bottom));
     width: min(300px, calc(100% - 16px));
     max-height: min(38vh, 280px);
