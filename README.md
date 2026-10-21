@@ -88,5 +88,5 @@ proxy hoặc cache tile của bên thứ ba. Bản đồ vẫn hiển thị ghi 
 - M0 và M0_v1: đã xác nhận
 - M1: đã xác nhận; đã nhập OSM cho hai vùng Tân Châu và Phú Tân thuộc An Giang
 - M2: đã xác nhận; tile OSM 256px rõ nét, map tự fit vùng phục vụ theo viewport hẹp (trung vị 2,95 giây trên Fast 4G mô phỏng); nền vệ tinh chưa cấu hình và bị ẩn
-- M3: chờ xác nhận; viewer Pannellum đóng gói cục bộ, bốn ảnh kiểm thử giả đi dọc một đường. Ảnh equirectangular đặt hướng bắc tại yaw `-heading`; truyền `heading` vào `northOffset` đã được kiểm chứng bằng ảnh N/E/S/W ([ảnh kiểm chứng](docs/reports/m3-compass.png)). `make seed-demo` nạp ảnh mẫu, `make e2e` kiểm tra viewer trên viewport di động; xem `docs/milestones/M3.md`
+- M3: đang làm; viewer Pannellum có mũi tên nổi tiến/lùi theo hướng nhìn và danh sách ảnh gần. Dữ liệu hiện là bốn ảnh giả, chưa có ảnh chụp thực địa nên chưa tạo trải nghiệm Street View hoàn chỉnh. Ảnh equirectangular đặt hướng bắc tại yaw `-heading`; truyền `heading` vào `northOffset` đã được kiểm chứng bằng ảnh N/E/S/W ([ảnh kiểm chứng](docs/reports/m3-compass.png)). `make seed-demo` nạp ảnh thử, `make e2e` kiểm tra viewer trên viewport di động; xem `docs/milestones/M3.md`
 - M4–M7: chưa bắt đầu; xem `docs/milestones/`
