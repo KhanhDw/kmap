@@ -18,10 +18,11 @@ function isErrorEnvelope(body: unknown): body is { error: ApiError } {
   );
 }
 
-export async function apiGet<T>(path: string): Promise<T> {
+export async function apiGet<T>(path: string, signal?: AbortSignal): Promise<T> {
   const response = await fetch(`${API_URL}${path}`, {
     headers: { Accept: "application/json" },
     credentials: "include",
+    signal,
   });
 
   const body: unknown = await response.json();

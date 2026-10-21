@@ -66,6 +66,14 @@ bash scripts/fetch_osm.sh
 Script cắt dữ liệu theo `config/areas.geojson`, thay schema `osm` nguyên tử và ghi
 báo cáo vào `docs/reports/m1-osm-report.md`.
 
+## Cấu hình nền bản đồ
+
+Nền phố dùng tile URL và ghi công OSM từ `.env`. Nền vệ tinh mặc định bị ẩn;
+không có nhà cung cấp mặc định. Trước khi bật hoặc công khai nền vệ tinh, chủ dự
+án phải tự chọn nguồn và xác nhận điều khoản sử dụng, rồi cấu hình
+`SAT_TILE_URL`, `SAT_ATTRIBUTION` và `SAT_MAX_ZOOM` trong `.env`. Ứng dụng không
+proxy hoặc cache tile của bên thứ ba.
+
 ## Stack đã chọn
 
 - Python 3.12
@@ -78,5 +86,5 @@ báo cáo vào `docs/reports/m1-osm-report.md`.
 
 - M0 và M0_v1: đã xác nhận
 - M1: đã xác nhận; đã nhập OSM cho hai vùng Tân Châu và Phú Tân thuộc An Giang
-- M2: đang làm; nguồn vệ tinh chưa cấu hình, layer sẽ ẩn khi thiếu cấu hình
-- M2–M7: chưa bắt đầu; xem `docs/milestones/`
+- M2: chờ xác nhận; ưu tiên tile OSM 256px rõ nét (trung vị 3,57 giây trên Fast 4G mô phỏng, vượt mục tiêu 3 giây theo lựa chọn của chủ dự án); nền vệ tinh chưa cấu hình và bị ẩn
+- M3–M7: chưa bắt đầu; xem `docs/milestones/`

@@ -4,30 +4,27 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.middleware.gzip import GZipMiddleware
 from fastapi.responses import JSONResponse
 from sqlalchemy import create_engine
 from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.core.config import settings
-from app.routers import health
+from app.core.errors import AppError
+from app.routers import health, read_data
 from app.services.areas import sync_service_areas
 
 
-class AppError(Exception):
-    def __init__(self, code: str, message: str, status_code: int = 400) -> None:
-        self.code = code
-        self.message = message
-        self.status_code = status_code
-
-
 @asynccontextmanager
-async def lifespan(_: FastAPI) -> AsyncIterator[None]:
+async def lifespan(app: FastAPI) -> AsyncIterator[None]:
     engine = create_engine(settings.DATABASE_URL)
+    app.state.database_engine = engine
     try:
         sync_service_areas(engine, settings.AREAS_FILE)
         yield
     finally:
         engine.dispose()
+        del app.state.database_engine
 
 
 app = FastAPI(
@@ -46,6 +43,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.add_middleware(GZipMiddleware, minimum_size=1000, compresslevel=5)
 
 
 @app.exception_handler(AppError)
@@ -79,3 +77,4 @@ async def validation_error_handler(request: Request, exc: RequestValidationError
 
 
 app.include_router(health.router, prefix="/api/v1")
+app.include_router(read_data.router, prefix="/api/v1")

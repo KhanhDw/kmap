@@ -38,3 +38,55 @@ def postgis_engine() -> Iterator[Engine]:
     with engine.begin() as connection:
         connection.execute(text("DROP TABLE service_areas"))
     engine.dispose()
+
+
+@pytest.fixture(scope="session")
+def read_api_schema(postgis_engine: Engine) -> Iterator[None]:
+    with postgis_engine.begin() as connection:
+        connection.execute(text("CREATE SCHEMA IF NOT EXISTS osm"))
+        for statement in (
+            """
+            CREATE TABLE users (
+                id uuid PRIMARY KEY,
+                display_name text NOT NULL
+            )
+            """,
+            """
+            CREATE TABLE photos (
+                id uuid PRIMARY KEY,
+                contributor_id uuid NOT NULL REFERENCES users(id),
+                location geometry(Point, 4326) NOT NULL,
+                heading real,
+                captured_at timestamptz,
+                display_key text,
+                mobile_key text,
+                thumbnail_key text,
+                exif_data jsonb,
+                status text NOT NULL,
+                deleted_at timestamptz
+            )
+            """,
+            """
+            CREATE TABLE user_roads (
+                id uuid PRIMARY KEY,
+                geometry geometry(LineString, 4326) NOT NULL,
+                name text,
+                road_type text NOT NULL,
+                status text NOT NULL,
+                deleted_at timestamptz
+            )
+            """,
+            """
+            CREATE TABLE osm.roads (
+                id bigint PRIMARY KEY,
+                name text,
+                highway text NOT NULL,
+                geometry geometry(Geometry, 4326) NOT NULL
+            )
+            """,
+        ):
+            connection.execute(text(statement))
+    yield
+    with postgis_engine.begin() as connection:
+        connection.execute(text("DROP TABLE photos, user_roads, users, osm.roads"))
+        connection.execute(text("DROP SCHEMA osm"))

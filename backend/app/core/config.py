@@ -17,6 +17,7 @@ class Settings(BaseSettings):
 
     DATABASE_URL: str
     AREAS_FILE: Path = Path(__file__).resolve().parents[3] / "config" / "areas.geojson"
+    TERMS_VERSION: str
 
     JWT_SECRET: str
     JWT_ALGORITHM: str = "HS256"
@@ -28,6 +29,9 @@ class Settings(BaseSettings):
 
     TILE_URL: str = ""
     TILE_ATTRIBUTION: str = ""
+    SAT_TILE_URL: str = ""
+    SAT_ATTRIBUTION: str = ""
+    SAT_MAX_ZOOM: int = 19
 
 
 settings = Settings()
