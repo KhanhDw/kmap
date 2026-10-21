@@ -5,8 +5,8 @@ Tạo repo `kmap`, copy toàn bộ nội dung bộ này vào gốc repo (giữ n
 
 ## 2. Tin nhắn đầu tiên (phiên M0)
 ```
-Đọc CLAUDE.md và docs/STATUS.md. Milestone hiện tại là M0.
-Đọc docs/milestones/M0.md và thực hiện đúng phạm vi. Khi xong, báo cáo theo mẫu trong CLAUDE.md.
+Đọc CLAUDE.md và docs/STATUS.md. Milestone hiện tại là M0_v1.
+Đọc docs/milestones/M0_v1.md và docs/milestones/M0.md và đối chiếu logic và thực hiện đúng phạm vi. Khi xong, báo cáo theo mẫu trong CLAUDE.md.
 ```
 
 ## 3. Mỗi milestone về sau

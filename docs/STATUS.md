@@ -1,13 +1,13 @@
 # STATUS
 
-**Milestone hiện tại: M0**
+**Milestone hiện tại: M0_v1**
 
-Agent cập nhật file này khi bắt đầu và khi kết thúc mỗi milestone. Chỉ chủ dự án được chuyển trạng thái sang `Đã xác nhận`.
+Agent cập nhật file này khi bắt đầu và khi kết thúc mỗi milestone. Chỉ chủ dự án được chuyển trạng thái sang Đã xác nhận.
 
 | Milestone | Tuần dự kiến | Trạng thái | Ghi chú |
 | :-- | :-- | :-- | :-- |
-| M0 Khung dự án | 1 | Chưa bắt đầu | |
-| M0_v1 Khung dự án | 1 | Chờ xác nhận | cần đối chiếu M0_v1 và M0|
+| M0 Khung dự án | 1 | Đã xác nhận | Khung base đã dựng và kiểm tra sơ bộ |
+| M0_v1 Khung dự án | 1 | Đang làm | Đối chiếu với M0, bổ sung Makefile và cấu hình dev |
 | M1 OSM và vùng phục vụ | 1 | Chưa bắt đầu | Cần chủ dự án xác nhận ranh giới |
 | M2 API đọc và bản đồ | 1 | Chưa bắt đầu | Cần quyết định nguồn vệ tinh |
 | M3 Viewer 360° | 2 | Chưa bắt đầu | |
@@ -19,4 +19,4 @@ Agent cập nhật file này khi bắt đầu và khi kết thúc mỗi mileston
 | M7 Hoàn thiện và ra mắt | 4 | Chưa bắt đầu | |
 | Dự phòng, chụp và duyệt ảnh, ra mắt | 5 | | |
 
-Trạng thái: `Chưa bắt đầu` → `Đang làm` → `Chờ xác nhận` → `Đã xác nhận`.
+Trạng thái: Chưa bắt đầu → Đang làm → Chờ xác nhận → Đã xác nhận.

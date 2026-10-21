@@ -1,4 +1,4 @@
-services:
+﻿services:
   db:
     image: postgis/postgis:16-3.4
     restart: unless-stopped
@@ -14,11 +14,19 @@ services:
       interval: 5s
       timeout: 5s
       retries: 10
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
 
   api:
     build: ./backend
     restart: unless-stopped
     env_file: .env
+    environment:
+      ENV: ${ENV:-development}
+      FRONTEND_ORIGIN: ${FRONTEND_ORIGIN:-http://localhost}
     volumes:
       - media:/data/media
     depends_on:
@@ -26,6 +34,12 @@ services:
         condition: service_healthy
     expose:
       - "8000"
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --proxy-headers
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
 
   web:
     build:
@@ -40,6 +54,11 @@ services:
     restart: unless-stopped
     expose:
       - "80"
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
 
   caddy:
     image: caddy:2-alpine
@@ -54,6 +73,11 @@ services:
     depends_on:
       - api
       - web
+    logging:
+      driver: json-file
+      options:
+        max-size: 10m
+        max-file: "3"
 
 volumes:
   pgdata:
