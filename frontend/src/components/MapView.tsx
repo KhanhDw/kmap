@@ -54,6 +54,7 @@ function initialMapState(config: PublicMapConfig) {
   const hasLng = params.has("lng") && Number.isFinite(lng) && lng >= -180 && lng <= 180;
   const hasZoom = params.has("z") && Number.isFinite(zoom) && zoom >= 0 && zoom <= 24;
   return {
+    hasViewOverride: hasLat || hasLng || hasZoom,
     center: {
       lat: hasLat ? lat : config.center.lat,
       lng: hasLng ? lng : config.center.lng,
@@ -128,10 +129,25 @@ export default function MapView({ config }: { config: PublicMapConfig }) {
       east: serviceBounds.east + marginLongitude,
       north: serviceBounds.north + marginLatitude,
     };
-    const map = L.map(mapElement.current, { zoomControl: true }).setView(
-      [initialState.center.lat, initialState.center.lng],
-      initialState.zoom,
-    );
+    const map = L.map(mapElement.current, { zoomControl: true });
+    if (initialState.hasViewOverride) {
+      map.setView(
+        [initialState.center.lat, initialState.center.lng],
+        initialState.zoom,
+      );
+    } else {
+      const viewportZoom = Math.min(
+        config.zoom,
+        config.zoom + Math.round(Math.log2(map.getSize().x / 800)),
+      );
+      map.fitBounds(
+        [
+          [serviceBounds.south, serviceBounds.west],
+          [serviceBounds.north, serviceBounds.east],
+        ],
+        { maxZoom: viewportZoom, padding: [24, 24] },
+      );
+    }
     mapInstance.current = map;
     const streetUrl = import.meta.env.VITE_TILE_URL;
     const streetAttribution =

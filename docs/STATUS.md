@@ -9,7 +9,7 @@ Agent cập nhật file này khi bắt đầu và khi kết thúc mỗi mileston
 | M0 Khung dự án | 1 | Đã xác nhận | Khung base đã dựng và kiểm tra sơ bộ |
 | M0_v1 Khung dự án | 1 | Đã xác nhận | Đã kiểm tra build/run Compose, API/web/admin, pytest, Ruff và frontend build |
 | M1 OSM và vùng phục vụ | 1 | Đã xác nhận | Dữ liệu OSM An Giang cho Tân Châu và Phú Tân đã nhập (310 đường); schema và kiểm tra M1 đạt |
-| M2 API đọc và bản đồ | 1 | Chờ xác nhận | API, bản đồ và kiểm thử đạt; chủ dự án ưu tiên tile OSM 256px rõ nét (trung vị tải 3,57 giây, vượt mục tiêu <3 giây); vệ tinh chưa cấu hình và bị ẩn |
+| M2 API đọc và bản đồ | 1 | Chờ xác nhận | API, bản đồ và kiểm thử đạt; giữ tile OSM 256px, fit zoom theo viewport hẹp (trung vị tải 2,95 giây); vệ tinh chưa cấu hình và bị ẩn |
 | M3 Viewer 360° | 2 | Chưa bắt đầu | |
 | M4 Tài khoản, phân quyền | 2 | Chưa bắt đầu | |
 | M5a Upload ảnh (backend) | 2 | Chưa bắt đầu | |
