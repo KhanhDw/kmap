@@ -20,10 +20,12 @@ migrate:
 
 test:
 	docker compose exec -T api python -m pytest -q
+	cd frontend && npm test
 
 lint:
 	docker compose exec -T api python -m ruff check app tests alembic \
-		/scripts/report_osm.py /scripts/make_extract_polygon.py
+		/scripts/report_osm.py /scripts/make_extract_polygon.py \
+		/scripts/make_test_panorama.py /scripts/seed_demo.py
 	docker compose build web
 
 e2e:

@@ -88,4 +88,5 @@ proxy hoặc cache tile của bên thứ ba. Bản đồ vẫn hiển thị ghi 
 - M0 và M0_v1: đã xác nhận
 - M1: đã xác nhận; đã nhập OSM cho hai vùng Tân Châu và Phú Tân thuộc An Giang
 - M2: đã xác nhận; tile OSM 256px rõ nét, map tự fit vùng phục vụ theo viewport hẹp (trung vị 2,95 giây trên Fast 4G mô phỏng); nền vệ tinh chưa cấu hình và bị ẩn
-- M3–M7: chưa bắt đầu; xem `docs/milestones/`
+- M3: đang làm; xem `docs/milestones/M3.md`
+- M4–M7: chưa bắt đầu; xem `docs/milestones/`
